@@ -15,6 +15,7 @@ class ServiceFactory(
         val retrofit = Retrofit.Builder()
             .baseUrl(endpoint)
             .client(httpClient)
+            .addConverterFactory(EarthquakeResponseConverterFactory)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
