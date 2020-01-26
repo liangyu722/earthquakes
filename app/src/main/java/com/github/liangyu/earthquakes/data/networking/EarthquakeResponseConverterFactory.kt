@@ -1,6 +1,6 @@
 package com.github.liangyu.earthquakes.data.networking
 
-import com.github.liangyu.earthquakes.data.db.entity.Earthquake
+import com.github.liangyu.earthquakes.data.Earthquake
 import com.github.liangyu.earthquakes.data.networking.response.EarthquakeResponse
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
