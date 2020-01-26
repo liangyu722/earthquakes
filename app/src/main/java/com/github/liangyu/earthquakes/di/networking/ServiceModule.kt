@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
-class ServicesModule {
+class ServiceModule {
 
     companion object {
         private const val ENDPOINT = "http://api.geonames.org/"

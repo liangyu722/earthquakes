@@ -7,8 +7,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentMap
+import javax.inject.Inject
 
-class DefaultEarthquakeRepository(
+class DefaultEarthquakeRepository @Inject constructor(
     private val geoNameEarthquakeService: GeoNameEarthquakeService,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ): EarthquakeRepository {

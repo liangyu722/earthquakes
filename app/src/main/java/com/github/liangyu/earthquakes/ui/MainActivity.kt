@@ -2,6 +2,8 @@ package com.github.liangyu.earthquakes.ui
 
 import android.os.Bundle
 import com.github.liangyu.earthquakes.R
+import com.github.liangyu.earthquakes.data.EarthquakeRepository
+import com.github.liangyu.earthquakes.data.Result
 import com.github.liangyu.earthquakes.data.networking.GeoNameEarthquakeService
 import com.github.liangyu.earthquakes.ui.common.BaseActivity
 import kotlinx.coroutines.GlobalScope
@@ -10,7 +12,7 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
 
-    @Inject lateinit var earthquakeService : GeoNameEarthquakeService
+    @Inject lateinit var repository: EarthquakeRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,9 +21,9 @@ class MainActivity : BaseActivity() {
 
 
         GlobalScope.launch {
-            val list = earthquakeService.earthquakeAsync().await().earthquakes
+            val list = repository.getEarthquakes(false)
 
-            list.forEach {
+            (list as Result.Success).data.forEach {
                 System.out.println(it)
             }
         }
