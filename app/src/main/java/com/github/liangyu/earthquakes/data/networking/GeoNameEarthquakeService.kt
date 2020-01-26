@@ -1,6 +1,6 @@
 package com.github.liangyu.earthquakes.data.networking
 
-import com.github.liangyu.earthquakes.data.response.EarthquakeResponse
+import com.github.liangyu.earthquakes.data.networking.response.EarthquakeResponse
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query
