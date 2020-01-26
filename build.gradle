@@ -39,4 +39,5 @@ ext {
     mockkVersion = '1.9.3'
     junitVersion = '4.12'
     kluentVersion = '1.56'
+    archLifecycleVersion = '2.2.0'
 }
