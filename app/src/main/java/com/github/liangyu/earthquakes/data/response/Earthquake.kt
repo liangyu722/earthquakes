@@ -1,4 +1,4 @@
-package com.github.liangyu.earthquakes.entities
+package com.github.liangyu.earthquakes.data.response
 
 data class Earthquake(
     val datetime: DateTime,
