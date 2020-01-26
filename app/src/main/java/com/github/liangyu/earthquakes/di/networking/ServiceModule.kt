@@ -1,7 +1,7 @@
 package com.github.liangyu.earthquakes.di.networking
 
-import com.github.liangyu.earthquakes.data.GeoNameEarthquakeService
-import com.github.liangyu.earthquakes.networking.ServiceFactory
+import com.github.liangyu.earthquakes.data.networking.GeoNameEarthquakeService
+import com.github.liangyu.earthquakes.data.networking.ServiceFactory
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module

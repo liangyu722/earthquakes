@@ -1,4 +1,4 @@
-package com.github.liangyu.earthquakes.networking
+package com.github.liangyu.earthquakes.data.networking
 
 import com.google.gson.Gson
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory

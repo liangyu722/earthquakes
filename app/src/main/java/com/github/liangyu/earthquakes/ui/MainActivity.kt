@@ -1,9 +1,10 @@
-package com.github.liangyu.earthquakes
+package com.github.liangyu.earthquakes.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.github.liangyu.earthquakes.R
+import com.github.liangyu.earthquakes.ui.common.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

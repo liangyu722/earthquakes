@@ -1,4 +1,4 @@
-package com.github.liangyu.earthquakes.data
+package com.github.liangyu.earthquakes.data.networking
 
 import com.github.liangyu.earthquakes.data.response.EarthquakeResponse
 import kotlinx.coroutines.Deferred
