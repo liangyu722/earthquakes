@@ -8,6 +8,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getPresentationComponent().inject(this)
         setContentView(R.layout.activity_main)
     }
 }
