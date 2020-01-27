@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Earthquakes</string>
     <string name="loading_earthquake_error">Error while loading earthquakes</string>
+    <string name="no_earthquakes_message">There are currently no earthquakes</string>
 </resources>

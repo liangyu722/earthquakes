@@ -20,19 +20,12 @@ class EarthquakesViewModel @Inject constructor(
     private val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading: LiveData<Boolean> = _dataLoading
 
-    private val _noEarthquakesLabel = MutableLiveData<Int>()
-    val noEarthquakesLabel: LiveData<Int> = _noEarthquakesLabel
-
-    private val _noEarthquakeIconRes = MutableLiveData<Int>()
-    val noEarthquakeIconRes: LiveData<Int> = _noEarthquakeIconRes
-
     private val _snackbarText = MutableLiveData<Event<Int>>()
     val snackbarMessage: LiveData<Event<Int>> = _snackbarText
 
     private val _openEarthquakeEvent = MutableLiveData<Event<String>>()
     val openEarthquakeEvent: LiveData<Event<String>> = _openEarthquakeEvent
 
-    // This LiveData depends on another so we can use a transformation.
     val empty: LiveData<Boolean> = Transformations.map(_items) {
         it.isEmpty()
     }
@@ -48,6 +41,7 @@ class EarthquakesViewModel @Inject constructor(
         _openEarthquakeEvent.value = Event(eqId)
     }
 
+    //Only ever going to be error message, but what if we want to add more later
     private fun showSnackbarMessage(message: Int) {
         _snackbarText.value = Event(message)
     }

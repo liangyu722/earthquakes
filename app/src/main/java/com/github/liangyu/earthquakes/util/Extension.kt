@@ -10,7 +10,6 @@ inline fun <reified VM : ViewModel> FragmentActivity.viewModelProvider(
 ) =
     ViewModelProvider(this, provider).get(VM::class.java)
 
-
 inline fun <reified VM : ViewModel> Fragment.viewModelProvider(
     provider: ViewModelProvider.Factory
 ) =
