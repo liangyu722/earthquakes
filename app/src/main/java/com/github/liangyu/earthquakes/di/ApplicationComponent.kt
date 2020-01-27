@@ -3,6 +3,7 @@ package com.github.liangyu.earthquakes.di
 import android.content.Context
 import com.github.liangyu.earthquakes.EarthquakeApplication
 import com.github.liangyu.earthquakes.di.networking.ServiceModule
+import com.github.liangyu.earthquakes.di.presentation.EarthquakeDetailModule
 import com.github.liangyu.earthquakes.di.presentation.EarthquakesModule
 import dagger.BindsInstance
 import dagger.Component
@@ -16,7 +17,8 @@ import javax.inject.Singleton
         ApplicationModule::class,
         AndroidSupportInjectionModule::class,
         ServiceModule::class,
-        EarthquakesModule::class
+        EarthquakesModule::class,
+        EarthquakeDetailModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<EarthquakeApplication> {
