@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">earthquakes</string>
+    <string name="app_name">Earthquakes</string>
+    <string name="loading_earthquake_error">Error while loading earthquakes</string>
 </resources>
