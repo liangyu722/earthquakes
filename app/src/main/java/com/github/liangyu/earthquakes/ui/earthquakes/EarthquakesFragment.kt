@@ -15,6 +15,7 @@ class EarthquakesFragment : BaseFragment() {
     @Inject lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: EarthquakesViewModel
     private lateinit var viewDataBinding: EarthquakesFragBinding
+    private lateinit var listAdapter: EarthquakesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,5 +26,18 @@ class EarthquakesFragment : BaseFragment() {
         viewDataBinding = EarthquakesFragBinding.inflate(inflater, container, false)
         viewDataBinding.viewmodel = viewModel
         return viewDataBinding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setupListAdapter()
+    }
+
+    private fun setupListAdapter() {
+        val viewModel = viewDataBinding.viewmodel
+        if (viewModel != null) {
+            listAdapter = EarthquakesAdapter(viewModel)
+            viewDataBinding.earthquakesList.adapter = listAdapter
+        }
     }
 }
