@@ -1,31 +1,18 @@
 package com.github.liangyu.earthquakes.ui
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.github.liangyu.earthquakes.R
 import com.github.liangyu.earthquakes.data.EarthquakeRepository
-import com.github.liangyu.earthquakes.common.Result
-import com.github.liangyu.earthquakes.ui.common.BaseActivity
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MainActivity : BaseActivity() {
+class MainActivity : AppCompatActivity() {
 
-    @Inject lateinit var repository: EarthquakeRepository
+    @Inject
+    lateinit var repository: EarthquakeRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getPresentationComponent().inject(this)
         setContentView(R.layout.activity_main)
-
-
-        GlobalScope.launch {
-            val list = repository.getEarthquakes(false)
-
-            (list as Result.Success).data.forEach {
-                System.out.println(it)
-            }
-        }
-
     }
 }

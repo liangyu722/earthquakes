@@ -1,23 +1,14 @@
 package com.github.liangyu.earthquakes
 
-import android.app.Application
-import com.github.liangyu.earthquakes.di.ApplicationComponent
-import com.github.liangyu.earthquakes.di.ApplicationModule
 import com.github.liangyu.earthquakes.di.DaggerApplicationComponent
+import dagger.android.AndroidInjector
+import dagger.android.support.DaggerApplication
 
-class EarthquakeApplication : Application() {
 
-    private lateinit var applicationComponent: ApplicationComponent
-
-    override fun onCreate() {
-        super.onCreate()
-        applicationComponent = DaggerApplicationComponent.builder()
-            .applicationModule(ApplicationModule(this))
-            .build()
-    }
-
-    fun getApplicationComponent(): ApplicationComponent {
-        return applicationComponent
+open class EarthquakeApplication : DaggerApplication() {
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return DaggerApplicationComponent.factory().create(applicationContext)
     }
 
 }
+

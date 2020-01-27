@@ -1,14 +1,27 @@
 package com.github.liangyu.earthquakes.di
 
+import android.content.Context
+import com.github.liangyu.earthquakes.EarthquakeApplication
 import com.github.liangyu.earthquakes.di.networking.ServiceModule
-import com.github.liangyu.earthquakes.di.presentation.PresentationComponent
-import com.github.liangyu.earthquakes.di.presentation.PresentationModule
+import com.github.liangyu.earthquakes.di.presentation.EarthquakesModule
+import dagger.BindsInstance
 import dagger.Component
+import dagger.android.AndroidInjector
+import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [ApplicationModule::class, ServiceModule::class])
-interface ApplicationComponent {
-
-    fun newPresentationComponent(presentationModule: PresentationModule): PresentationComponent
+@Component(
+    modules = [
+        ApplicationModule::class,
+        AndroidSupportInjectionModule::class,
+        ServiceModule::class,
+        EarthquakesModule::class
+    ]
+)
+interface ApplicationComponent : AndroidInjector<EarthquakeApplication> {
+    @Component.Factory
+    interface Factory {
+        fun create(@BindsInstance applicationContext: Context): ApplicationComponent
+    }
 }
