@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.github.liangyu.earthquakes.EventObserver
 import com.github.liangyu.earthquakes.databinding.EarthquakesFragBinding
 import com.github.liangyu.earthquakes.util.viewModelProvider
 import dagger.android.support.DaggerFragment
@@ -32,6 +31,7 @@ class EarthquakesFragment : DaggerFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
         setupListAdapter()
     }
 
