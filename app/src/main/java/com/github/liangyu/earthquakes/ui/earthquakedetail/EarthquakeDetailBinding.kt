@@ -3,7 +3,7 @@ package com.github.liangyu.earthquakes.ui.earthquakedetail
 import androidx.annotation.DimenRes
 import androidx.databinding.BindingAdapter
 import com.github.liangyu.earthquakes.ui.model.Earthquake
-import com.github.liangyu.earthquakes.util.getFloatUsingCompat
+import com.github.liangyu.earthquakes.common.getFloatUsingCompat
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.model.CameraPosition

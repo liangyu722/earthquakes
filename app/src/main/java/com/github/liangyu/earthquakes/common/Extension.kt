@@ -1,4 +1,4 @@
-package com.github.liangyu.earthquakes.util
+package com.github.liangyu.earthquakes.common
 
 import android.content.res.Resources
 import androidx.annotation.DimenRes

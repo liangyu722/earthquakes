@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.github.liangyu.earthquakes.common.setupSnackbar
 import com.github.liangyu.earthquakes.databinding.EarthquakedetailFragBinding
-import com.github.liangyu.earthquakes.util.viewModelProvider
+import com.github.liangyu.earthquakes.common.viewModelProvider
 import com.google.android.gms.maps.MapView
+import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -35,6 +37,7 @@ class EarthquakeDetailFragment : DaggerFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
+        view?.setupSnackbar(this, viewModel.snackbarMessage, Snackbar.LENGTH_SHORT)
     }
 
     override fun onCreateView(
@@ -48,7 +51,6 @@ class EarthquakeDetailFragment : DaggerFragment() {
         mapView = viewDataBinding.map.apply {
             onCreate(mapViewBundle)
         }
-
         viewModel.start(args.eqid)
         return viewDataBinding.root
     }
