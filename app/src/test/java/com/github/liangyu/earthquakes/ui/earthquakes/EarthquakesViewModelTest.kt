@@ -3,7 +3,7 @@ package com.github.liangyu.earthquakes.ui.earthquakes
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.github.liangyu.earthquakes.MainCoroutineRule
 import com.github.liangyu.earthquakes.R
-import com.github.liangyu.earthquakes.data.Earthquake
+import com.github.liangyu.earthquakes.data.EarthquakeEntity
 import com.github.liangyu.earthquakes.data.EarthquakeRepository
 import com.github.liangyu.earthquakes.data.Result
 import io.mockk.coEvery
@@ -103,9 +103,9 @@ class EarthquakesViewModelTest {
     }
 
     //------------------------- Helper ----------------------------------------------------
-    private val eq1 = Earthquake("eq1", "datetime 1", 10.0, -15.5, 10.2, 8.6, "us")
-    private val eq2 = Earthquake("eq2", "datetime 2", 12.0, -11.5, 80.2, 7.6, "us")
-    private val eq3 = Earthquake("eq3", "datetime 3", 13.0, -15.8, 90.2, 2.6, "us")
+    private val eq1 = EarthquakeEntity("eq1", "datetime 1", 10.0, -15.5, 10.2, 8.6, "us")
+    private val eq2 = EarthquakeEntity("eq2", "datetime 2", 12.0, -11.5, 80.2, 7.6, "us")
+    private val eq3 = EarthquakeEntity("eq3", "datetime 3", 13.0, -15.8, 90.2, 2.6, "us")
     private val successResponse = Result.Success(listOf(eq1, eq2, eq3))
     private val errorResponse = Result.Error(Exception("error loading earthquake"))
 

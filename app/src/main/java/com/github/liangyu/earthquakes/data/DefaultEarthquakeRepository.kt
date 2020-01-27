@@ -14,19 +14,19 @@ class DefaultEarthquakeRepository @Inject constructor(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ): EarthquakeRepository {
 
-    private var cachedEarthquake: ConcurrentMap<String, Earthquake>? = null
+    private var cachedEarthquakeEntity: ConcurrentMap<String, EarthquakeEntity>? = null
 
-    override suspend fun getEarthquakes(forceUpdate: Boolean): Result<List<Earthquake>> {
+    override suspend fun getEarthquakes(forceUpdate: Boolean): Result<List<EarthquakeEntity>> {
         return withContext(ioDispatcher) {
             if (!forceUpdate) {
-                cachedEarthquake?.let { cachedEarthquakes ->
+                cachedEarthquakeEntity?.let { cachedEarthquakes ->
                     return@withContext Success(cachedEarthquakes.values.sortedBy { it.datetime })
                 }
             }
 
             val newEarthquakes = fetchEarthquakesFromRemote()
             (newEarthquakes as? Success)?.let { refreshCache(it.data) }
-            cachedEarthquake?.values?.let { tasks ->
+            cachedEarthquakeEntity?.values?.let { tasks ->
                 return@withContext Success(tasks.sortedBy { it.datetime })
             }
 
@@ -40,7 +40,7 @@ class DefaultEarthquakeRepository @Inject constructor(
         }
     }
 
-    override suspend fun getEarthquake(eqid: String, forceUpdate: Boolean): Result<Earthquake> {
+    override suspend fun getEarthquake(eqid: String, forceUpdate: Boolean): Result<EarthquakeEntity> {
         return withContext(ioDispatcher) {
             // Respond immediately with cache if available
             if (!forceUpdate) {
@@ -59,28 +59,28 @@ class DefaultEarthquakeRepository @Inject constructor(
         }
     }
 
-    private suspend fun fetchEarthquakesFromRemote(): Result<List<Earthquake>> {
+    private suspend fun fetchEarthquakesFromRemote(): Result<List<EarthquakeEntity>> {
         return try {
             val earthquake = geoNameEarthquakeService.earthquakeAsync().await()
-            Success(earthquake.earthquakes)
+            Success(earthquake.earthquakeEntities)
         } catch (e: Exception) {
             Error(e)
         }
     }
 
-    private fun getEarthquakeWithId(id: String) = cachedEarthquake?.get(id)
+    private fun getEarthquakeWithId(id: String) = cachedEarthquakeEntity?.get(id)
 
-    private fun refreshCache(earthquakes: List<Earthquake>) {
-        cachedEarthquake?.clear()
-        earthquakes.sortedBy { it.datetime }.forEach {
+    private fun refreshCache(earthquakeEntities: List<EarthquakeEntity>) {
+        cachedEarthquakeEntity?.clear()
+        earthquakeEntities.sortedBy { it.datetime }.forEach {
             cacheEarthquake(it)
         }
     }
 
-    private fun cacheEarthquake(earthquake: Earthquake) {
-        if (cachedEarthquake == null) {
-            cachedEarthquake = ConcurrentHashMap()
+    private fun cacheEarthquake(earthquakeEntity: EarthquakeEntity) {
+        if (cachedEarthquakeEntity == null) {
+            cachedEarthquakeEntity = ConcurrentHashMap()
         }
-        cachedEarthquake?.put(earthquake.eqid, earthquake)
+        cachedEarthquakeEntity?.put(earthquakeEntity.eqid, earthquakeEntity)
     }
 }

@@ -2,7 +2,7 @@ package com.github.liangyu.earthquakes.data
 
 import com.github.liangyu.earthquakes.common.DateTime
 
-data class Earthquake(
+data class EarthquakeEntity(
     val eqid: String,
     val datetime: DateTime,
     val depth: Double,

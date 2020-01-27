@@ -1,6 +1,6 @@
 package com.github.liangyu.earthquakes.data.networking
 
-import com.github.liangyu.earthquakes.data.Earthquake
+import com.github.liangyu.earthquakes.data.EarthquakeEntity
 import com.github.liangyu.earthquakes.data.networking.response.EarthquakeResponse
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
@@ -32,7 +32,7 @@ object EarthquakeResponseConverterFactory : Converter.Factory() {
                 val earthquakes = parser.parse(body).asJsonObject
                 val listOfEarthquake = earthquakes.get("earthquakes").asJsonArray.map {
                     val jsonObj: JsonObject = it.asJsonObject
-                    Earthquake(
+                    EarthquakeEntity(
                         eqid = jsonObj.get("eqid").asString,
                         datetime = jsonObj.get("datetime").asString,
                         depth = jsonObj.get("depth").asDouble,

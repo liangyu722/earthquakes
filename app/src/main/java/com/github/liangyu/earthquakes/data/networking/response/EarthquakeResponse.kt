@@ -1,7 +1,7 @@
 package com.github.liangyu.earthquakes.data.networking.response
 
-import com.github.liangyu.earthquakes.data.Earthquake
+import com.github.liangyu.earthquakes.data.EarthquakeEntity
 
 data class EarthquakeResponse(
-    val earthquakes: List<Earthquake>
+    val earthquakeEntities: List<EarthquakeEntity>
 )
