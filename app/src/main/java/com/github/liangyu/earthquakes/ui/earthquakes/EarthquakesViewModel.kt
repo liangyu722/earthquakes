@@ -44,8 +44,8 @@ class EarthquakesViewModel @Inject constructor(
     /**
      * Called by Data Binding.
      */
-    fun openEarthquake(taskId: String) {
-        _openEarthquakeEvent.value = Event(taskId)
+    fun openEarthquake(eqId: String) {
+        _openEarthquakeEvent.value = Event(eqId)
     }
 
     private fun showSnackbarMessage(message: Int) {

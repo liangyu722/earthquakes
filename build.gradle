@@ -40,4 +40,5 @@ ext {
     junitVersion = '4.12'
     kluentVersion = '1.56'
     archLifecycleVersion = '2.2.0'
+    archTestingVersion = '2.0.0'
 }
