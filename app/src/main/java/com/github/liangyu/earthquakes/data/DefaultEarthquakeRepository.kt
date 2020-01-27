@@ -1,5 +1,6 @@
 package com.github.liangyu.earthquakes.data
 
+import com.github.liangyu.earthquakes.common.RepositoryLoadingException
 import com.github.liangyu.earthquakes.common.Result
 import com.github.liangyu.earthquakes.common.Result.*
 import com.github.liangyu.earthquakes.data.networking.GeoNameEarthquakeService
@@ -37,7 +38,7 @@ class DefaultEarthquakeRepository @Inject constructor(
                 }
             }
 
-            return@withContext Error(Exception("Illegal state"))
+            return@withContext Error(RepositoryLoadingException("Cannot load earthquake"))
         }
     }
 
@@ -56,7 +57,7 @@ class DefaultEarthquakeRepository @Inject constructor(
                 return@withContext Success(it)
             }
 
-            return@withContext Error(Exception("Cannot find earthquake"))
+            return@withContext Error(RepositoryLoadingException("Cannot find earthquake"))
         }
     }
 
