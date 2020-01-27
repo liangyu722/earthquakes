@@ -2,7 +2,8 @@ package com.github.liangyu.earthquakes.data
 
 import com.github.liangyu.earthquakes.common.RepositoryLoadingException
 import com.github.liangyu.earthquakes.common.Result
-import com.github.liangyu.earthquakes.common.Result.*
+import com.github.liangyu.earthquakes.common.Result.Error
+import com.github.liangyu.earthquakes.common.Result.Success
 import com.github.liangyu.earthquakes.data.networking.GeoNameEarthquakeService
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +15,7 @@ import javax.inject.Inject
 class DefaultEarthquakeRepository @Inject constructor(
     private val geoNameEarthquakeService: GeoNameEarthquakeService,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
-): EarthquakeRepository {
+) : EarthquakeRepository {
 
     private var cachedEarthquakeEntity: ConcurrentMap<String, EarthquakeEntity>? = null
 
@@ -42,7 +43,10 @@ class DefaultEarthquakeRepository @Inject constructor(
         }
     }
 
-    override suspend fun getEarthquake(eqid: String, forceUpdate: Boolean): Result<EarthquakeEntity> {
+    override suspend fun getEarthquake(
+        eqid: String,
+        forceUpdate: Boolean
+    ): Result<EarthquakeEntity> {
         return withContext(ioDispatcher) {
             // Respond immediately with cache if available
             if (!forceUpdate) {

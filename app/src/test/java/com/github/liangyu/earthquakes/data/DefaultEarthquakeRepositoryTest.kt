@@ -6,7 +6,10 @@ import com.github.liangyu.earthquakes.data.networking.GeoNameEarthquakeService
 import com.github.liangyu.earthquakes.data.networking.response.EarthquakeResponse
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.test.runBlockingTest
 import org.amshove.kluent.shouldEqual
 import org.junit.Before
@@ -75,7 +78,7 @@ class DefaultEarthquakeRepositoryTest {
         //Arrange
         coEvery { geoNameEarthquakeService.earthquakeAsync() } returns GlobalScope.async { emptyEarthquakeResponse }
         //Act
-        val result = sut.getEarthquake("eq1",false)
+        val result = sut.getEarthquake("eq1", false)
         //Assert
         result.succeeded shouldEqual false
     }
@@ -85,7 +88,7 @@ class DefaultEarthquakeRepositoryTest {
         //Arrange
         coEvery { geoNameEarthquakeService.earthquakeAsync() } returns GlobalScope.async { earthquakeResponse }
         //Act
-        val result = sut.getEarthquake("eq1",false)
+        val result = sut.getEarthquake("eq1", false)
         //Assert
         result.succeeded shouldEqual result.succeeded
         (result as Result.Success).data shouldEqual eq1
@@ -98,7 +101,7 @@ class DefaultEarthquakeRepositoryTest {
         sut.getEarthquakes(false)
         coEvery { geoNameEarthquakeService.earthquakeAsync() } returns GlobalScope.async { newEarthquakeResponse }
         //Act
-        val newResult = sut.getEarthquake("eq1",false)
+        val newResult = sut.getEarthquake("eq1", false)
         newResult.succeeded shouldEqual newResult.succeeded
         (newResult as Result.Success).data shouldEqual eq1
     }
@@ -111,7 +114,7 @@ class DefaultEarthquakeRepositoryTest {
         coEvery { geoNameEarthquakeService.earthquakeAsync() } returns GlobalScope.async { newEarthquakeResponse }
         sut.getEarthquakes(true)
         //Act
-        val newResult = sut.getEarthquake("new eq",true)
+        val newResult = sut.getEarthquake("new eq", true)
         newResult.succeeded shouldEqual newResult.succeeded
         (newResult as Result.Success).data shouldEqual newEq
     }

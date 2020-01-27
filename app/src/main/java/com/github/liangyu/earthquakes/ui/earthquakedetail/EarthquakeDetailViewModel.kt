@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.liangyu.earthquakes.Event
+import com.github.liangyu.earthquakes.common.Event
 import com.github.liangyu.earthquakes.R
 import com.github.liangyu.earthquakes.common.Result.Error
 import com.github.liangyu.earthquakes.common.Result.Success
@@ -27,9 +27,6 @@ class EarthquakeDetailViewModel @Inject constructor(
 
     private val _snackbarText = MutableLiveData<Event<Int>>()
     val snackbarMessage: LiveData<Event<Int>> = _snackbarText
-
-    private val taskId: String?
-        get() = _earthquake.value?.eqid
 
     fun start(eqid: String) {
         // Show loading indicator
@@ -53,7 +50,6 @@ class EarthquakeDetailViewModel @Inject constructor(
         _earthquake.value = null
         showSnackbarMessage(R.string.loading_earthquake_error)
     }
-
 
     private fun showSnackbarMessage(@StringRes message: Int) {
         _snackbarText.value = Event(message)

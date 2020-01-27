@@ -3,9 +3,9 @@ package com.github.liangyu.earthquakes.ui.earthquakes
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.github.liangyu.earthquakes.MainCoroutineRule
 import com.github.liangyu.earthquakes.R
+import com.github.liangyu.earthquakes.common.Result
 import com.github.liangyu.earthquakes.data.EarthquakeEntity
 import com.github.liangyu.earthquakes.data.EarthquakeRepository
-import com.github.liangyu.earthquakes.common.Result
 import com.github.liangyu.earthquakes.ui.model.Earthquake
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -134,7 +134,5 @@ class EarthquakesViewModelTest {
     private val successRepositoryResponse = Result.Success(listOf(eqentity1, eqentity2, eqentity3))
     private val successResponse = Result.Success(listOf(eq1, eq2, eq3))
     private val errorResponse = Result.Error(Exception("error loading earthquake"))
-
-
 
 }

@@ -25,3 +25,4 @@ abstract class EarthquakeDetailModule {
     @ViewModelKey(EarthquakeDetailViewModel::class)
     abstract fun bindViewModel(viewmodel: EarthquakeDetailViewModel): ViewModel
 }
+

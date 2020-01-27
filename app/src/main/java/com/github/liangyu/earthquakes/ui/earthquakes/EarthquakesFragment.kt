@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.github.liangyu.earthquakes.EventObserver
+import com.github.liangyu.earthquakes.common.EventObserver
 import com.github.liangyu.earthquakes.common.setupSnackbar
-import com.github.liangyu.earthquakes.databinding.EarthquakesFragBinding
 import com.github.liangyu.earthquakes.common.viewModelProvider
+import com.github.liangyu.earthquakes.databinding.EarthquakesFragBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -50,9 +50,10 @@ class EarthquakesFragment : DaggerFragment() {
     }
 
     private fun setupNavigation() {
-        viewModel.openEarthquakeEvent.observe(this, EventObserver {
-            openEarthquakeDetails(it)
-        })
+        viewModel.openEarthquakeEvent.observe(this,
+            EventObserver {
+                openEarthquakeDetails(it)
+            })
     }
 
     private fun openEarthquakeDetails(eqid: String) {

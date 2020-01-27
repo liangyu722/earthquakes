@@ -1,11 +1,10 @@
 package com.github.liangyu.earthquakes.ui.earthquakes
 
 import androidx.lifecycle.*
-import com.github.liangyu.earthquakes.Event
+import com.github.liangyu.earthquakes.common.Event
 import com.github.liangyu.earthquakes.R
-import com.github.liangyu.earthquakes.data.EarthquakeEntity
-import com.github.liangyu.earthquakes.data.EarthquakeRepository
 import com.github.liangyu.earthquakes.common.Result.Success
+import com.github.liangyu.earthquakes.data.EarthquakeRepository
 import com.github.liangyu.earthquakes.ui.common.toEarthQuake
 import com.github.liangyu.earthquakes.ui.model.Earthquake
 import kotlinx.coroutines.launch

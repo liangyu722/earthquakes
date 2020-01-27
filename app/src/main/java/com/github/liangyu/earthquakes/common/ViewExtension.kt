@@ -4,7 +4,6 @@ import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import com.github.liangyu.earthquakes.Event
 import com.google.android.material.snackbar.Snackbar
 
 fun View.setupSnackbar(

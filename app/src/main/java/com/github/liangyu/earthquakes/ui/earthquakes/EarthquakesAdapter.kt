@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.github.liangyu.earthquakes.data.EarthquakeEntity
 import com.github.liangyu.earthquakes.databinding.EarthquakeItemBinding
 import com.github.liangyu.earthquakes.ui.earthquakes.EarthquakesAdapter.ViewHolder
 import com.github.liangyu.earthquakes.ui.model.Earthquake

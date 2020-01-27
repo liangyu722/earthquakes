@@ -6,7 +6,9 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface GeoNameEarthquakeService {
-
+    /**
+     * Changing url parameter is out of scope
+     */
     @GET("earthquakesJSON")
     fun earthquakeAsync(
         @Query("north") northCoordinate: Double = 44.1,

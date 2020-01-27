@@ -2,13 +2,12 @@ package com.github.liangyu.earthquakes.ui.earthquakedetail
 
 import androidx.annotation.DimenRes
 import androidx.databinding.BindingAdapter
-import com.github.liangyu.earthquakes.ui.model.Earthquake
 import com.github.liangyu.earthquakes.common.getFloatUsingCompat
+import com.github.liangyu.earthquakes.ui.model.Earthquake
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
-
 
 @BindingAdapter("app:mapCamera")
 fun setCamera(mapView: MapView, earthquake: Earthquake?) {

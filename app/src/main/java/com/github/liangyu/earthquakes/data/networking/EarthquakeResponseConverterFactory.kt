@@ -10,8 +10,10 @@ import retrofit2.Retrofit
 import java.lang.reflect.Type
 
 object EarthquakeResponseConverterFactory : Converter.Factory() {
-    override fun responseBodyConverter(type: Type, annotations: Array<out Annotation>,
-                                       retrofit: Retrofit): Converter<ResponseBody, *>? {
+    override fun responseBodyConverter(
+        type: Type, annotations: Array<out Annotation>,
+        retrofit: Retrofit
+    ): Converter<ResponseBody, *>? {
 
         return if (type == EarthquakeResponse::class.java) {
             EarthquakeConverter

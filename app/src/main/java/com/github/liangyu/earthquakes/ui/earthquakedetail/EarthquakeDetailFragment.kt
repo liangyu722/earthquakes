@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.github.liangyu.earthquakes.common.setupSnackbar
-import com.github.liangyu.earthquakes.databinding.EarthquakedetailFragBinding
 import com.github.liangyu.earthquakes.common.viewModelProvider
+import com.github.liangyu.earthquakes.databinding.EarthquakedetailFragBinding
 import com.google.android.gms.maps.MapView
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerFragment
