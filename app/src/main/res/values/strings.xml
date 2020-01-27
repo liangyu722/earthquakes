@@ -2,4 +2,6 @@
     <string name="app_name">Earthquakes</string>
     <string name="loading_earthquake_error">Error while loading earthquakes</string>
     <string name="no_earthquakes_message">There are currently no earthquakes</string>
+    <string name="earthquake_timestamp">Timestamp</string>
+    <string name="magnitude">Magnitude</string>
 </resources>
