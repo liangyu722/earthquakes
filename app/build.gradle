@@ -23,6 +23,11 @@ android {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
+
+    dataBinding {
+        enabled = true
+        enabledForTests = true
+    }
 }
 
 dependencies {
@@ -52,6 +57,9 @@ dependencies {
 
     //Recycler View
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+
+    //Swipe refresh layout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipeRefreshLayout"
 
     //Test
     testImplementation "io.mockk:mockk:$mockkVersion"
