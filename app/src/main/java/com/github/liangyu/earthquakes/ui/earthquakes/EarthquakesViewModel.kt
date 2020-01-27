@@ -6,6 +6,7 @@ import com.github.liangyu.earthquakes.R
 import com.github.liangyu.earthquakes.data.EarthquakeEntity
 import com.github.liangyu.earthquakes.data.EarthquakeRepository
 import com.github.liangyu.earthquakes.common.Result.Success
+import com.github.liangyu.earthquakes.ui.common.toEarthQuake
 import com.github.liangyu.earthquakes.ui.model.Earthquake
 import kotlinx.coroutines.launch
 import java.util.*
@@ -66,18 +67,5 @@ class EarthquakesViewModel @Inject constructor(
 
     fun refresh() {
         loadEarthquakes(true)
-    }
-
-    private fun EarthquakeEntity.toEarthQuake() : Earthquake {
-        return Earthquake(
-            this.eqid,
-            this.datetime,
-            this.depth,
-            this.lat,
-            this.lng,
-            this.magnitude,
-            this.src,
-            this.magnitude >= 8.0
-        )
     }
 }

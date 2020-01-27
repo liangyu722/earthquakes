@@ -23,6 +23,7 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingBottom="@dimen/list_item_padding"
         android:paddingTop="@dimen/list_item_padding"
+        android:onClick="@{() -> viewmodel.openEarthquake(earthquake.eqid)}"
         >
 
         <ImageView
@@ -33,8 +34,7 @@
             android:visibility="@{earthquake.major ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:onClick="@{() -> viewmodel.openEarthquake(earthquake.eqid)}"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/source_tv"

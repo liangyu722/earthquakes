@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.github.liangyu.earthquakes.EventObserver
 import com.github.liangyu.earthquakes.databinding.EarthquakesFragBinding
 import com.github.liangyu.earthquakes.util.viewModelProvider
 import dagger.android.support.DaggerFragment
@@ -33,6 +35,7 @@ class EarthquakesFragment : DaggerFragment() {
         super.onActivityCreated(savedInstanceState)
         viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
         setupListAdapter()
+        setupNavigation()
     }
 
     private fun setupListAdapter() {
@@ -41,5 +44,17 @@ class EarthquakesFragment : DaggerFragment() {
             listAdapter = EarthquakesAdapter(viewModel)
             viewDataBinding.earthquakesList.adapter = listAdapter
         }
+    }
+
+    private fun setupNavigation() {
+        viewModel.openEarthquakeEvent.observe(this, EventObserver {
+            openEarthquakeDetails(it)
+        })
+    }
+
+    private fun openEarthquakeDetails(eqid: String) {
+        val action = EarthquakesFragmentDirections
+            .actionEarthquakesFragmentToEarthquakeDetailFragment(eqid)
+        findNavController().navigate(action)
     }
 }
