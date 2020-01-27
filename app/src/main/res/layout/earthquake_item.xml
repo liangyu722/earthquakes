@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="earthquake"
+            type="com.github.liangyu.earthquakes.ui.model.Earthquake" />
+
+        <variable
+            name="viewmodel"
+            type="com.github.liangyu.earthquakes.ui.earthquakes.EarthquakesViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/list_item_padding"
+        android:paddingTop="@dimen/list_item_padding"
+        >
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_warning_24dp"
+            android:visibility="@{earthquake.major ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{() -> viewmodel.openEarthquake(earthquake.eqid)}"/>
+
+        <TextView
+            android:id="@+id/source_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@{earthquake.src}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/textview_margin"
+            tools:text="Source tv"/>
+
+        <TextView
+            android:id="@+id/date_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{earthquake.datetime}"
+            app:layout_constraintBottom_toBottomOf="@+id/source_tv"
+            app:layout_constraintStart_toEndOf="@+id/source_tv"
+            app:layout_constraintTop_toTopOf="@+id/source_tv"
+            android:layout_marginStart="@dimen/textview_margin"
+            tools:text="Date time tv" />
+
+        <TextView
+            android:id="@+id/magnitude_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Double.toString(earthquake.magnitude)}"
+            app:layout_constraintBottom_toBottomOf="@+id/source_tv"
+            app:layout_constraintStart_toEndOf="@+id/date_time_tv"
+            app:layout_constraintTop_toTopOf="@+id/source_tv"
+            android:layout_marginStart="@dimen/textview_margin"
+            tools:text="Magnitude tv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

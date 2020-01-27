@@ -6,6 +6,7 @@ import com.github.liangyu.earthquakes.R
 import com.github.liangyu.earthquakes.data.EarthquakeEntity
 import com.github.liangyu.earthquakes.data.EarthquakeRepository
 import com.github.liangyu.earthquakes.common.Result
+import com.github.liangyu.earthquakes.ui.model.Earthquake
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -30,7 +31,7 @@ class EarthquakesViewModelTest {
 
     @Before
     fun setup() {
-        coEvery { repository.getEarthquakes(any()) } returns successResponse
+        coEvery { repository.getEarthquakes(any()) } returns successRepositoryResponse
         sut = EarthquakesViewModel(repository)
     }
 
@@ -102,11 +103,38 @@ class EarthquakesViewModelTest {
         sut.openEarthquakeEvent.value!!.peekContent() shouldEqual eqid
     }
 
+    @Test
+    fun `loadEarthquakes magnitude 8 or greater should be major`() {
+        //Arrange
+        //Act
+        sut.loadEarthquakes(true)
+        //Assert
+        sut.items.value!![0].major shouldEqual true
+    }
+
+    @Test
+    fun `loadEarthquakes magnitude less than 8 is not major`() {
+        //Arrange
+        //Act
+        sut.loadEarthquakes(true)
+        //Assert
+        sut.items.value!![1].major shouldEqual false
+        sut.items.value!![2].major shouldEqual false
+    }
+
     //------------------------- Helper ----------------------------------------------------
-    private val eq1 = EarthquakeEntity("eq1", "datetime 1", 10.0, -15.5, 10.2, 8.6, "us")
-    private val eq2 = EarthquakeEntity("eq2", "datetime 2", 12.0, -11.5, 80.2, 7.6, "us")
-    private val eq3 = EarthquakeEntity("eq3", "datetime 3", 13.0, -15.8, 90.2, 2.6, "us")
+    private val eqentity1 = EarthquakeEntity("eq1", "datetime 1", 10.0, -15.5, 10.2, 8.6, "us")
+    private val eqentity2 = EarthquakeEntity("eq2", "datetime 2", 12.0, -11.5, 80.2, 7.6, "us")
+    private val eqentity3 = EarthquakeEntity("eq3", "datetime 3", 13.0, -15.8, 90.2, 2.6, "us")
+
+    private val eq1 = Earthquake("eq1", "datetime 1", 10.0, -15.5, 10.2, 8.6, "us", true)
+    private val eq2 = Earthquake("eq2", "datetime 2", 12.0, -11.5, 80.2, 7.6, "us", false)
+    private val eq3 = Earthquake("eq3", "datetime 3", 13.0, -15.8, 90.2, 2.6, "us", false)
+
+    private val successRepositoryResponse = Result.Success(listOf(eqentity1, eqentity2, eqentity3))
     private val successResponse = Result.Success(listOf(eq1, eq2, eq3))
     private val errorResponse = Result.Error(Exception("error loading earthquake"))
+
+
 
 }

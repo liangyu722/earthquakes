@@ -3,9 +3,10 @@ package com.github.liangyu.earthquakes.ui.earthquakes
 import androidx.lifecycle.*
 import com.github.liangyu.earthquakes.Event
 import com.github.liangyu.earthquakes.R
-import com.github.liangyu.earthquakes.data.Earthquake
+import com.github.liangyu.earthquakes.data.EarthquakeEntity
 import com.github.liangyu.earthquakes.data.EarthquakeRepository
-import com.github.liangyu.earthquakes.data.Result.Success
+import com.github.liangyu.earthquakes.common.Result.Success
+import com.github.liangyu.earthquakes.ui.model.Earthquake
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -51,7 +52,9 @@ class EarthquakesViewModel @Inject constructor(
         viewModelScope.launch {
             val earthquakeResult = repository.getEarthquakes(forceUpdate)
             if (earthquakeResult is Success) {
-                val earthquakes = earthquakeResult.data
+                val earthquakes = earthquakeResult.data.map {
+                    it.toEarthQuake()
+                }
                 _items.value = ArrayList(earthquakes)
             } else {
                 _items.value = emptyList()
@@ -63,5 +66,18 @@ class EarthquakesViewModel @Inject constructor(
 
     fun refresh() {
         loadEarthquakes(true)
+    }
+
+    private fun EarthquakeEntity.toEarthQuake() : Earthquake {
+        return Earthquake(
+            this.eqid,
+            this.datetime,
+            this.depth,
+            this.lat,
+            this.lng,
+            this.magnitude,
+            this.src,
+            this.magnitude >= 8.0
+        )
     }
 }

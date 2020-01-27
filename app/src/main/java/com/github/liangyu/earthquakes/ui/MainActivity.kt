@@ -3,8 +3,7 @@ package com.github.liangyu.earthquakes.ui
 import android.os.Bundle
 import com.github.liangyu.earthquakes.R
 import com.github.liangyu.earthquakes.data.EarthquakeRepository
-import com.github.liangyu.earthquakes.data.Result
-import com.github.liangyu.earthquakes.data.networking.GeoNameEarthquakeService
+import com.github.liangyu.earthquakes.common.Result
 import com.github.liangyu.earthquakes.ui.common.BaseActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
