@@ -1,5 +1,7 @@
 package com.github.liangyu.earthquakes.data
 
+import com.github.liangyu.earthquakes.common.Result
+import com.github.liangyu.earthquakes.common.succeeded
 import com.github.liangyu.earthquakes.data.networking.GeoNameEarthquakeService
 import com.github.liangyu.earthquakes.data.networking.response.EarthquakeResponse
 import io.mockk.coEvery

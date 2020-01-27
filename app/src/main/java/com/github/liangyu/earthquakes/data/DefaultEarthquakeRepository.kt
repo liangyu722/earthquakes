@@ -1,6 +1,7 @@
 package com.github.liangyu.earthquakes.data
 
-import com.github.liangyu.earthquakes.data.Result.*
+import com.github.liangyu.earthquakes.common.Result
+import com.github.liangyu.earthquakes.common.Result.*
 import com.github.liangyu.earthquakes.data.networking.GeoNameEarthquakeService
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

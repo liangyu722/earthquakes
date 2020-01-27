@@ -1,4 +1,4 @@
-package com.github.liangyu.earthquakes.data
+package com.github.liangyu.earthquakes.common
 
 sealed class Result<out R> {
 

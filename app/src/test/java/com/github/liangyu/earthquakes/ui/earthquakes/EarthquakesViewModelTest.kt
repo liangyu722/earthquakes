@@ -5,7 +5,7 @@ import com.github.liangyu.earthquakes.MainCoroutineRule
 import com.github.liangyu.earthquakes.R
 import com.github.liangyu.earthquakes.data.EarthquakeEntity
 import com.github.liangyu.earthquakes.data.EarthquakeRepository
-import com.github.liangyu.earthquakes.data.Result
+import com.github.liangyu.earthquakes.common.Result
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
