@@ -35,6 +35,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
+    //Card
+    implementation "androidx.cardview:cardview:$cardVersion"
+
     //Map
     implementation "com.google.android.gms:play-services-maps:$googleMapVersion"
 
