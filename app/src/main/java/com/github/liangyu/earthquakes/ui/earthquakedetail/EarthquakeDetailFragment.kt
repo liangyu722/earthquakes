@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.github.liangyu.earthquakes.databinding.EarthquakedetailFragBinding
 import com.github.liangyu.earthquakes.util.viewModelProvider
 import com.google.android.gms.maps.MapView
@@ -22,12 +23,18 @@ class EarthquakeDetailFragment : DaggerFragment() {
     private lateinit var viewDataBinding: EarthquakedetailFragBinding
     private var mapViewBundle: Bundle? = null
     private lateinit var mapView: MapView
+    private val args: EarthquakeDetailFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState != null) {
             mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY)
         }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
     }
 
     override fun onCreateView(
@@ -39,8 +46,10 @@ class EarthquakeDetailFragment : DaggerFragment() {
         viewDataBinding = EarthquakedetailFragBinding.inflate(inflater, container, false)
         viewDataBinding.viewmodel = viewModel
         mapView = viewDataBinding.map.apply {
-            onCreate(null)
+            onCreate(mapViewBundle)
         }
+
+        viewModel.start(args.eqid)
         return viewDataBinding.root
     }
 

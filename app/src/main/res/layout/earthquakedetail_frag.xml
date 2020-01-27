@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="com.github.liangyu.earthquakes.R" />
+
         <import type="android.view.View" />
 
         <variable
@@ -20,7 +22,10 @@
         <com.google.android.gms.maps.MapView
             android:id="@+id/map"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            app:mapCamera="@{viewmodel.earthquake}"
+            app:mapMaxZoom="@{R.dimen.map_viewport_max_zoom}"
+            app:mapMinZoom="@{R.dimen.map_viewport_min_zoom}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
