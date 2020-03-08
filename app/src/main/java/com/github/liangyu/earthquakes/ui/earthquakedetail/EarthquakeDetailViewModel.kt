@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.liangyu.earthquakes.R
 import com.github.liangyu.earthquakes.common.Event
+import com.github.liangyu.earthquakes.R
 import com.github.liangyu.earthquakes.common.Result.Error
 import com.github.liangyu.earthquakes.common.Result.Success
 import com.github.liangyu.earthquakes.data.EarthquakeRepository
@@ -17,17 +17,20 @@ import javax.inject.Inject
 
 class EarthquakeDetailViewModel @Inject constructor(
     private val repository: EarthquakeRepository
-) : ViewModel(), ViewEarthquakeDetailViewModel {
+) : ViewModel() {
 
-    override val earthquake = MutableLiveData<Earthquake>()
+    private val _earthquake = MutableLiveData<Earthquake>()
+    val earthquake: LiveData<Earthquake> = _earthquake
 
-    override val dataLoading = MutableLiveData<Boolean>()
+    private val _dataLoading = MutableLiveData<Boolean>()
+    val dataLoading: LiveData<Boolean> = _dataLoading
 
-    override val snackbarMessage = MutableLiveData<Event<Int>>()
+    private val _snackbarText = MutableLiveData<Event<Int>>()
+    val snackbarMessage: LiveData<Event<Int>> = _snackbarText
 
-    override fun start(eqid: String) {
+    fun start(eqid: String) {
         // Show loading indicator
-        dataLoading.value = true
+        _dataLoading.value = true
         viewModelScope.launch {
             repository.getEarthquake(eqid, false).let { result ->
                 when (result) {
@@ -35,20 +38,20 @@ class EarthquakeDetailViewModel @Inject constructor(
                     is Error -> onDataNotAvailable(result)
                 }
             }
-            dataLoading.value = false
+            _dataLoading.value = false
         }
     }
 
     private fun onTaskLoaded(earthquake: Earthquake) {
-        this.earthquake.value = earthquake
+        _earthquake.value = earthquake
     }
 
     private fun onDataNotAvailable(result: Error) {
-        earthquake.value = null
+        _earthquake.value = null
         showSnackbarMessage(R.string.loading_earthquake_error)
     }
 
     private fun showSnackbarMessage(@StringRes message: Int) {
-        snackbarMessage.value = Event(message)
+        _snackbarText.value = Event(message)
     }
 }

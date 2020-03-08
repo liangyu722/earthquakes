@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.github.liangyu.earthquakes.common.setupSnackbar
+import com.github.liangyu.earthquakes.common.viewModelProvider
 import com.github.liangyu.earthquakes.databinding.EarthquakedetailFragBinding
 import com.google.android.gms.maps.MapView
 import com.google.android.material.snackbar.Snackbar
@@ -20,7 +21,7 @@ class EarthquakeDetailFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var viewModel: ViewEarthquakeDetailViewModel
+    private lateinit var viewModel: EarthquakeDetailViewModel
     private lateinit var viewDataBinding: EarthquakedetailFragBinding
     private var mapViewBundle: Bundle? = null
     private lateinit var mapView: MapView
@@ -44,8 +45,7 @@ class EarthquakeDetailFragment : DaggerFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this, viewModelFactory)
-            .get(EarthquakeDetailViewModel::class.java)
+        viewModel = viewModelProvider(viewModelFactory)
         viewDataBinding = EarthquakedetailFragBinding.inflate(inflater, container, false)
         viewDataBinding.viewmodel = viewModel
         mapView = viewDataBinding.map.apply {

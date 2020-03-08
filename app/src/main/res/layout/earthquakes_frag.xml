@@ -8,7 +8,7 @@
 
         <variable
             name="viewmodel"
-            type="com.github.liangyu.earthquakes.ui.earthquakes.ViewEarthquakesViewModel" />
+            type="com.github.liangyu.earthquakes.ui.earthquakes.EarthquakesViewModel" />
 
     </data>
 

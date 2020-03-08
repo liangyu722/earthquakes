@@ -9,7 +9,7 @@ import com.github.liangyu.earthquakes.databinding.EarthquakeItemBinding
 import com.github.liangyu.earthquakes.ui.earthquakes.EarthquakesAdapter.ViewHolder
 import com.github.liangyu.earthquakes.ui.model.Earthquake
 
-class EarthquakesAdapter(private val viewModel: ViewEarthquakesViewModel) :
+class EarthquakesAdapter(private val viewModel: EarthquakesViewModel) :
     ListAdapter<Earthquake, ViewHolder>(EarthquakeDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -24,7 +24,7 @@ class EarthquakesAdapter(private val viewModel: ViewEarthquakesViewModel) :
     class ViewHolder private constructor(val binding: EarthquakeItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(viewModel: ViewEarthquakesViewModel, item: Earthquake) {
+        fun bind(viewModel: EarthquakesViewModel, item: Earthquake) {
             binding.viewmodel = viewModel
             binding.earthquake = item
             binding.executePendingBindings()
