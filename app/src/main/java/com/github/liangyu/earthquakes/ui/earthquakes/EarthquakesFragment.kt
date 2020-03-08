@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.github.liangyu.earthquakes.common.EventObserver
 import com.github.liangyu.earthquakes.common.setupSnackbar
-import com.github.liangyu.earthquakes.common.viewModelProvider
 import com.github.liangyu.earthquakes.databinding.EarthquakesFragBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerFragment
@@ -18,7 +17,7 @@ class EarthquakesFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var viewModel: EarthquakesViewModel
+    private lateinit var viewModel: ViewEarthquakesViewModel
     private lateinit var viewDataBinding: EarthquakesFragBinding
     private lateinit var listAdapter: EarthquakesAdapter
 
@@ -27,7 +26,8 @@ class EarthquakesFragment : DaggerFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = viewModelProvider(viewModelFactory)
+        viewModel = ViewModelProvider(this, viewModelFactory)
+            .get(EarthquakesViewModel::class.java)
         viewDataBinding = EarthquakesFragBinding.inflate(inflater, container, false)
         viewDataBinding.viewmodel = viewModel
         return viewDataBinding.root

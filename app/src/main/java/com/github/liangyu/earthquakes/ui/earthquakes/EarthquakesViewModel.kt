@@ -13,21 +13,13 @@ import javax.inject.Inject
 
 class EarthquakesViewModel @Inject constructor(
     private val repository: EarthquakeRepository
-) : ViewModel() {
+) : ViewModel(), ViewEarthquakesViewModel {
 
-    private val _items = MutableLiveData<List<Earthquake>>().apply { value = emptyList() }
-    val items: LiveData<List<Earthquake>> = _items
-
-    private val _dataLoading = MutableLiveData<Boolean>()
-    val dataLoading: LiveData<Boolean> = _dataLoading
-
-    private val _snackbarText = MutableLiveData<Event<Int>>()
-    val snackbarMessage: LiveData<Event<Int>> = _snackbarText
-
-    private val _openEarthquakeEvent = MutableLiveData<Event<String>>()
-    val openEarthquakeEvent: LiveData<Event<String>> = _openEarthquakeEvent
-
-    val empty: LiveData<Boolean> = Transformations.map(_items) {
+    override val items = MutableLiveData<List<Earthquake>>().apply { value = emptyList() }
+    override val dataLoading = MutableLiveData<Boolean>()
+    override val snackbarMessage = MutableLiveData<Event<Int>>()
+    override val openEarthquakeEvent = MutableLiveData<Event<String>>()
+    override val empty: LiveData<Boolean> = Transformations.map(items) {
         it.isEmpty()
     }
 
@@ -35,36 +27,33 @@ class EarthquakesViewModel @Inject constructor(
         loadEarthquakes(true)
     }
 
-    /**
-     * Called by Data Binding.
-     */
-    fun openEarthquake(eqId: String) {
-        _openEarthquakeEvent.value = Event(eqId)
+    override fun openEarthquake(eqId: String) {
+        openEarthquakeEvent.value = Event(eqId)
     }
 
     //Only ever going to be error message, but what if we want to add more later
     private fun showSnackbarMessage(message: Int) {
-        _snackbarText.value = Event(message)
+        snackbarMessage.value = Event(message)
     }
 
-    fun loadEarthquakes(forceUpdate: Boolean) {
-        _dataLoading.value = true
+    override fun loadEarthquakes(forceUpdate: Boolean) {
+        dataLoading.value = true
         viewModelScope.launch {
             val earthquakeResult = repository.getEarthquakes(forceUpdate)
             if (earthquakeResult is Success) {
                 val earthquakes = earthquakeResult.data.map {
                     it.toEarthQuake()
                 }
-                _items.value = ArrayList(earthquakes)
+                items.value = ArrayList(earthquakes)
             } else {
-                _items.value = emptyList()
+                items.value = emptyList()
                 showSnackbarMessage(R.string.loading_earthquake_error)
             }
-            _dataLoading.value = false
+            dataLoading.value = false
         }
     }
 
-    fun refresh() {
+    override fun refresh() {
         loadEarthquakes(true)
     }
 }

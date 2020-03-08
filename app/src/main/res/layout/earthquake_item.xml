@@ -13,7 +13,7 @@
 
         <variable
             name="viewmodel"
-            type="com.github.liangyu.earthquakes.ui.earthquakes.EarthquakesViewModel" />
+            type="com.github.liangyu.earthquakes.ui.earthquakes.ViewEarthquakesViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView
