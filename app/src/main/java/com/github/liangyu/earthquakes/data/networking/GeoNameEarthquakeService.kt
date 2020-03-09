@@ -10,10 +10,10 @@ interface GeoNameEarthquakeService {
      * Changing url parameter is out of scope
      */
     @GET("earthquakesJSON")
-    fun earthquakeAsync(
+    suspend fun earthquakeAsync(
         @Query("north") northCoordinate: Double = 44.1,
         @Query("south") southCoordinate: Double = -9.9,
         @Query("east") eastCoordinate: Double = -22.4,
         @Query("west") westCoordinate: Double = 55.2
-    ): Deferred<EarthquakeResponse>
+    ): EarthquakeResponse
 }

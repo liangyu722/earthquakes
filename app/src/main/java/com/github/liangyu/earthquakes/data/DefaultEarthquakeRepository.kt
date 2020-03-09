@@ -67,7 +67,7 @@ class DefaultEarthquakeRepository @Inject constructor(
 
     private suspend fun fetchEarthquakesFromRemote(): Result<List<EarthquakeEntity>> {
         return try {
-            val earthquake = geoNameEarthquakeService.earthquakeAsync().await()
+            val earthquake = geoNameEarthquakeService.earthquakeAsync()
             Success(earthquake.earthquakeEntities)
         } catch (e: Exception) {
             Error(e)
