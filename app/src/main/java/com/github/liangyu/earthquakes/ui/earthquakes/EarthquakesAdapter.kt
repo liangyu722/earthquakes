@@ -21,7 +21,7 @@ class EarthquakesAdapter(private val viewModel: EarthquakesViewModel) :
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(val binding: EarthquakeItemBinding) :
+    class ViewHolder private constructor(private val binding: EarthquakeItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(viewModel: EarthquakesViewModel, item: Earthquake) {
