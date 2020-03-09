@@ -35,6 +35,4 @@ Changing input parameters for earthquake URL. Username of URL is treated as an A
 ### Improvement 
 Additional UseCase layer between ViewModel and Repository layer to handle business logic
 
-Interface ViewModel for UI testing and possible resue of ViewModel
-
 Room database for local caching
